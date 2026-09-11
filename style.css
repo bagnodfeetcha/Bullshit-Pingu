@@ -1,0 +1,91 @@
+*{box-sizing:border-box}html,body,#app{margin:0;width:100%;min-height:100%;font-family:Arial,Helvetica,sans-serif}body{background:#18354c;color:#fff}button{font:inherit;cursor:pointer}.screen{display:none;min-height:100dvh}.screen.active{display:flex}
+.start{background:url('background-desktop.png') center/100% 100% no-repeat;align-items:center;justify-content:center}.start-actions{margin-top:24vh;width:max-content;max-width:92vw;display:grid;justify-items:center;gap:12px}.agenda-label{text-align:center;font-weight:800;font-size:clamp(22px,2vw,34px);text-shadow:0 2px 8px #000}.start-actions button{width:max-content;min-width:330px;border:2px solid rgba(255,255,255,.9);border-radius:16px;padding:12px 28px;font-weight:800;font-size:clamp(18px,1.6vw,27px);color:#fff;box-shadow:0 6px 20px #0006}.start-actions button:nth-of-type(1),.start-actions button:nth-of-type(2){background:#39a9e7dd}.start-actions button:last-child{background:#263442e8}.start-actions small{display:block;font-size:.62em;font-weight:700;margin-top:3px}
+.game{background:url('background-desktop.png') center/100% 100% fixed no-repeat;align-items:center;justify-content:center;padding:24px}.game:before{content:"";position:fixed;inset:0;background:#071b2bb8;backdrop-filter:blur(2px)}.game-shell{position:relative;z-index:1;width:min(94vw,1050px);display:grid;justify-items:center;gap:18px}.board{width:min(88vh,900px,92vw);aspect-ratio:1;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:6px}.tile{position:relative;border:2px solid #17344b;border-radius:10px;background:#aebdcaeF;color:#08131c;display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;font-weight:400;font-size:clamp(11px,1.25vw,19px);line-height:1.12;overflow:hidden;overflow-wrap:anywhere;word-break:normal;hyphens:auto;box-shadow:inset 0 0 18px #dce8f255}.tile.checked{background:#123e61;color:#fff}.tile.checked:not(.joker)::after{content:"";position:absolute;width:88%;height:76%;left:6%;top:12%;background:radial-gradient(ellipse at 48% 50%,rgba(255,255,255,.98) 0 28%,rgba(246,247,241,.96) 29% 46%,rgba(229,235,232,.9) 47% 57%,transparent 59%),radial-gradient(circle at 10% 28%,#fff 0 5%,transparent 6%),radial-gradient(circle at 88% 20%,#f8faf7 0 6%,transparent 7%),radial-gradient(circle at 82% 82%,#fff 0 5%,transparent 6%),radial-gradient(circle at 19% 78%,#eef2ef 0 4%,transparent 5%);filter:drop-shadow(0 2px 2px #0005);transform:rotate(-7deg);z-index:2;pointer-events:none}
+.tile.checked span{position:relative;z-index:3}.tile.checked:not(.joker) span{opacity:.82}.joker{background:#123e61}.penguin{width:78%;aspect-ratio:1;position:relative;border-radius:52% 52% 45% 45%;background:#171b20;box-shadow:inset 0 -12px 0 #262b31,0 3px 8px #0007}.penguin:before{content:"";position:absolute;left:20%;right:20%;bottom:9%;height:34%;border-radius:50%;background:#f4f4ef}.penguin:after{content:"";position:absolute;left:42%;bottom:2%;width:16%;height:14%;background:#f49b1b;clip-path:polygon(50% 100%,0 0,100% 0)}
+.back{border:1px solid #fff;background:#1a2e3edb;color:#fff;border-radius:10px;padding:10px 24px;font-weight:700}.modal{display:none;position:fixed;z-index:10;inset:0;background:#00101dcc;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-card{position:relative;max-width:520px;background:#dce5ec;color:#122331;border-radius:16px;padding:28px;box-shadow:0 20px 70px #000}.modal-card h2{margin-top:0}.x,.win-close{position:absolute;right:16px;top:12px;border:0;background:#173c5c;color:#fff;border-radius:50%;width:56px;height:56px;font-size:36px;line-height:1}.win{display:none;position:fixed;z-index:20;inset:0;background:#000 url('meeting-end-desktop.png') center/100% 100% no-repeat}.win.open{display:block}.win-close{z-index:21;right:22px;top:22px}
+@media(max-width:600px){.start{background-image:url('background-mobile.png');background-position:center top;background-size:100% 100%}.start-actions{width:78vw;margin-top:30vh;gap:12px}.agenda-label{text-align:center;font-weight:800;font-size:clamp(16px,1.4vw,23px);text-shadow:0 2px 8px #000}.start-actions button{min-width:0;width:100%;padding:12px 18px;font-size:17px;border-radius:12px}.game{background-image:url('background-mobile.png');background-size:100% 100%;padding:10px}.board{width:96vw;gap:3px}.tile{border-width:1px;border-radius:7px;padding:4px;font-size:clamp(10px,3vw,14px);line-height:1.08}.x,.win-close{width:52px;height:52px;font-size:34px}.game-shell{gap:10px}.win{background-image:url('meeting-end-mobile.png');background-position:center top;background-size:100% 100%}.modal-card{font-size:15px}}
+/* Iteration 4 – nur angeforderte UI-Fixes */
+.back{padding:15px 36px;font-size:clamp(20px,1.8vw,28px);font-weight:800}
+.tile{background:#c2ced8ef;font-weight:700;color:#07131d}
+.win-close{width:76px;height:76px;font-size:48px;right:24px;top:24px}
+@media(max-width:600px){.back{padding:14px 32px;font-size:20px}.win-close{width:68px;height:68px;font-size:44px;right:14px;top:14px}}
+/* Iteration 5 – Gewinnzeile + Protokoll */
+.tile.winner{background:#f29a2e!important;color:#07131d!important}
+.protocol{display:none;border:2px solid #fff;background:#f29a2e;color:#101820;border-radius:10px;padding:15px 36px;font-size:clamp(20px,1.8vw,28px);font-weight:800;box-shadow:0 5px 18px #0007}
+.protocol.show{display:block}
+.meeting-protocol{position:absolute;z-index:21;left:50%;top:63%;transform:translate(-50%,-50%);width:min(460px,82vw);background:rgba(225,235,241,.92);color:#102230;border:2px solid rgba(255,255,255,.95);border-radius:16px;padding:18px 28px;box-shadow:0 10px 35px #0008}
+.meeting-protocol h2{margin:0 0 10px;font-size:clamp(28px,2.6vw,38px)}
+.meeting-protocol ul{margin:0;padding:0;list-style:none;font-size:clamp(17px,1.5vw,23px);font-weight:700;line-height:1.45}
+@media(max-width:600px){.protocol{padding:14px 24px;font-size:18px}.meeting-protocol{top:66%;width:84vw;padding:15px 20px}.meeting-protocol h2{font-size:27px}.meeting-protocol ul{font-size:16px}}
+/* Iteration 7 – ausschließlich Mobile-Minifixes */
+@media(max-width:600px){
+  /* Startbereich tiefer: Label beginnt ungefähr an der bisherigen JOUR-FIXE-Textposition */
+  .start-actions{transform:translateY(52px)}
+
+  /* Meetingprotokoll schmaler und rechts unten, damit Pingu frei bleibt */
+  .meeting-protocol{
+    left:auto;
+    right:10px;
+    top:auto;
+    bottom:12px;
+    transform:none;
+    width:56vw;
+    max-width:260px;
+    padding:12px 14px;
+  }
+  .meeting-protocol h2{font-size:24px}
+  .meeting-protocol ul{font-size:14px;line-height:1.35}
+}
+/* Iteration 8 – ausschließlich angeforderte Minifixes */
+@media(max-width:600px){
+  /* Startbereich nochmals ca. 1,5 Zeilen tiefer; Label +2pt */
+  .start-actions{transform:translateY(84px)}
+  .agenda-label{font-size:18.67px}
+
+  /* Meetingprotokoll: rechts im Feld mehr Luft */
+  .meeting-protocol{padding-right:22px}
+}
+/* Iteration 9 – Mobile-Minifix: Meetingprotokoll etwas breiter */
+@media(max-width:600px){
+  .meeting-protocol{width:62vw;max-width:285px;padding-right:26px}
+}
+/* Minifix – ausschließlich Mobile Meetingprotokoll */
+@media(max-width:600px){
+  .meeting-protocol{
+    width:68vw;
+    max-width:315px;
+    padding-left:18px;
+    padding-right:18px;
+  }
+  .meeting-protocol h2{font-size:20px}
+}
+
+/* INFO – breiter auf Desktop und scrollbar auf Desktop/Mobile */
+#info .modal-card{
+  width:min(900px,92vw);
+  max-width:900px;
+  max-height:calc(100dvh - 40px);
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+@media(max-width:600px){
+  #info .modal-card{
+    width:94vw;
+    max-width:94vw;
+    max-height:calc(100dvh - 24px);
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
+}
+
+/* INFO – ausschließlich angeforderte Text-/Größenanpassungen */
+@media(min-width:601px){
+  #info .modal-card{font-size:20px}
+  #info .modal-card h2{font-size:29.33px}
+  #info .info-highlight{font-size:22.67px}
+}
+@media(max-width:600px){
+  #info .modal-card h2{font-size:27.83px}
+  #info .info-highlight{font-size:17.67px}
+}
+#info .info-three-lines{height:3em}
