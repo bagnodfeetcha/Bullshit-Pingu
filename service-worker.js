@@ -1,4 +1,4 @@
-const CACHE_NAME = "bullshit-pingu-v1";
+const CACHE_NAME = "bullshit-pingu-v3";
 
 const APP_FILES = [
   "./",
